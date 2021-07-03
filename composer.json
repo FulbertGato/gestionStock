@@ -1,0 +1,15 @@
+{
+    "name": "junio/gestion-stock",
+    "description": "script php pour gerer stock magasin",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Fulbert gato junior Adanhodou",
+            "email": "fulbertgatojunior@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"gestion\\": "."}
+    },
+    "require": {}
+}
