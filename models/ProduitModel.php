@@ -28,22 +28,24 @@ class ProduitModel extends AbstractModel
         return @$result["count"]==0?false:true;
     }
 
-    public function selectNombreId(){
-        $sql = "SELECT * FROM $this->tableName ORDER BY ID DESC LIMIT 1";
-        $result=$this->selectAll($sql);
-        return $result["count"];
+    public function lastID(){
+        $sql = "SELECT id_produit from $this->tableName order by id_produit desc";
+        $result=$this->selectBy($sql);
+        $lastid=$result['data'][0]['id_produit'];
+        return $lastid;
     }
     public function selectAll():array {
         $sql="SELECT * FROM $this->tableName a ,categorie b WHERE a.categorie_id = b.id_categorie ";
+
         $result=$this->selectBy($sql);
         return $result["data"];
     }
 
-   /* public  function ruptureStock(){
-        $sql= "SELECT * FROM $this->tableName WHERE stock ='0'";
-        $result=$this->selectAll($sql);
-        return @$result["count"];
-    }
-*/
+   /*public  function ruptureStock(){
+        $sql= "SELECT * FROM $this->tableName WHERE stock = 0 ";
+        $result=$this->selectBy($sql);;
+        return @$result;
+    }*/
+
 
 }

@@ -26,6 +26,7 @@ abstract class  AbstractModel implements IModel {
     }
 
     public function insert(array $data){}
+
     public function persit(string $sql,array $data):int{
         $this->dataBase= new DataBase();
         return $this->dataBase->executeUpdate($sql, $data);

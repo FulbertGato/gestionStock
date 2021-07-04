@@ -1,9 +1,24 @@
 <?php
+
+use gestion\lib\Session;
+
 $title='ajout Produit';
+$array_error=[];
+if (Session::keyExist("array_error")){
+    //recupeeration des erreur de la session dans la variable local
+    $array_error = Session::getSession("array_error");
+   //dd($array_error);
+    Session::destroyKey("array_error");
+}
 ?>
 <div class="container mt-5">
     <button class="btn btn-success col-12"><h1 class="text-center "> AJouter un produit</h1> </button>
 <form action="<?php path('produit/addProduit');?>", method="post">
+    <?php if(isset($array_error)): ?>
+        <div class="alert alert-danger my-2 " role="alert">
+            <strong>Vérifiez vos saisie</strong>
+        </div>
+    <?php endif ?>
     <div class="form-row mt-3">
         <div class="form-group col-md-6">
             <?php $form->label("libellé","col-sm-2 col-form-label") ?>

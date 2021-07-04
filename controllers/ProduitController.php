@@ -26,8 +26,8 @@ class ProduitController extends  AbstractController{
             Response::redirectUrl("user/login");
         }
         $data= $this->model->selectAll();
-       // $nbreProduitRuptureStock = $this->model->ruptureStock();
-       //dd($data);
+     //  $nbreProduitRuptureStock = $this->model->ruptureStock();
+      // dd($nbreProduitRuptureStock );
         $r=0;
         $v=0;
         $p=0;
@@ -51,13 +51,16 @@ class ProduitController extends  AbstractController{
       if($request->isPost()){
 
           $data = $request->getBody();
-           // dd($data);
+          //dd($data);
           if(!$this->validator->estVide($data["libelle"], "libelle")){
               if($this->model->LibelleExiste($data["libelle"])){
                   $this->validator->setErrors("libelle","cet produit existe deja ");
               }
           }
-          $this->validator->estVide($data["stock"], "stock");
+          //$this->validator->estVide($data["stock"], "stock");
+            if(empty($data["stock"])){
+                $data["stock"]="0";
+            }
           if(intval($data["stock"])<0){
               $this->validator->setErrors("stockM","veuillez saissir un stock correct");
           }
@@ -84,16 +87,16 @@ class ProduitController extends  AbstractController{
 
         $categories=$this->model_categorie->selectAll();
 
-        $ref= $this->generateMatricule();
-
+        $ref= $this->generateReference();
+       // dd($ref);
         $this->render('produit/add.produit',['categories'=>$categories['data'],'form'=>$this->form,'ref'=>$ref]);
     }
 
-    public function generateMatricule(){
-        $NombreId = $this->model->selectNombreId();
-        $mat= $NombreId+1;
-        $matrice= "PROD00".$mat;
-        return $matrice;
+    public function generateReference(){
+        $lastId = $this->model->lastID();
+       $mat= $lastId+1;
+     $reference = "PROD00".$mat;
+        return  $reference;
     }
 
 }

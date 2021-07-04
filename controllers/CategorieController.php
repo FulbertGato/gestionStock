@@ -30,7 +30,7 @@ class CategorieController extends AbstractController{
           //  dd($data);
             if(!$this->validator->estVide($data["Libelle"], "Libelle")){
                     if($this->model->LibelleExiste($data["Libelle"])){
-                        $this->validator->setErrors("Libelle","cette categorie existe deja ");
+                        $this->validator->setErrors("libelleE","cette categorie existe deja ");
                     }  
             }
 
