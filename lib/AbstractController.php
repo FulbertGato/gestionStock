@@ -4,7 +4,7 @@ abstract  class AbstractController
 {
 
 protected Validator $validator;
-protected string $layout="default";
+protected string $layout="admin";
 /**
  * Chargement d'une View 
  *

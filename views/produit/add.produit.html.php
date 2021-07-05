@@ -37,7 +37,9 @@ if (Session::keyExist("array_error")){
             <select class="form-control custom-select" name="categorie_id">
                 <?php $form->option("Selectionnez une catégorie","0") ?>
                 <?php foreach ($categories as $cat):?>
-                <?php $form->option($cat['libelle_categorie'],$cat['id_categorie']) ?>
+                <?php if( $cat['status_categorie'] == "active"):?>
+                  <?php $form->option($cat['libelle_categorie'],$cat['id_categorie']) ?>
+                    <?php endif;?>
                 <?php endforeach;?>
             </select>
         </div>

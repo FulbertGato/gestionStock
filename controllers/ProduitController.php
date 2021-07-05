@@ -43,7 +43,7 @@ class ProduitController extends  AbstractController{
             }
 
         }
-
+   // $this->layout="vendor";
         $this->render('produit/show.produit', ["produits" => $data,"nbre_pupture"=>$r,"nbre_physique"=>$p,"nbre_virtuelle"=>$v]);
     }
 
@@ -78,6 +78,7 @@ class ProduitController extends  AbstractController{
 
           if($this->validator->formValide()){
               $this->model->insert($data);
+
               Response::redirectUrl("produit/addProduit");
           }else{
               Session::SetSession("array_error",$this->validator->getErrors());

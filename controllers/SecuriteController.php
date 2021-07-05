@@ -24,10 +24,11 @@ class securiteController extends AbstractController {
 
             $data= $request->getBody();
             if(!$this->validator->estVide($data["email"], "email")){
+                $data["email"]=strip_tags($data["email"]);
                 $this->validator->estMail($data["email"], "email");
             }
             $this->validator->estVide($data["password"], "password");
-
+            $data["password"]=strip_tags($data["password"]);
             if($this->validator->formValide()){
                 // login et mot de passe bien saisie sans erreur
                 $user = $modelEtudiant->selectUserByLogin($data["email"] );
@@ -39,11 +40,12 @@ class securiteController extends AbstractController {
 
                     if(PasswordEncoder::decode($data["password"], $user["password"])){
 
+                        unset($user["password"]);
                         Session::setSession("user_connect",$user);
-                        Response::redirectUrl("user/register");
+                        Response::redirectUrl("user/myInfo");
                         
                     }else{
-                        $this->validator->setErrors("error_loginP","login ou mot de passe incorrect passe");
+                        $this->validator->setErrors("error_login","login ou mot de passe incorrect passe");
                         Session::setSession("array_error",$this->validator->getErrors());
                         //Response::redirectUrl("etudiant/login");
                     }

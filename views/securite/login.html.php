@@ -20,6 +20,11 @@ if (Session::keyExist("array_error")){
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">connexion</h3></div>
                                     <div class="card-body">
                                         <form method="post" action="<?php path('securite/login')?>">
+                                            <?php if(isset($array_error["error_login"])): ?>
+                                                <div class="alert alert-danger my-2 " role="alert">
+                                                    <strong><?= $array_error["error_login"]?></strong>
+                                                </div>
+                                            <?php endif ?>
                                             <div class="form-floating mb-3">
                                                 <?php $form->input("email","form-control","email") ?>
                                                 <?php $form->label("email") ?>
@@ -40,5 +45,5 @@ if (Session::keyExist("array_error")){
                     </div>
                 </main>
             </div>
-            
+
         </div>

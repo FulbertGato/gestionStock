@@ -44,10 +44,13 @@ class UserController extends AbstractController{
             $data = $request->getBody();
             //dd($data);
             $this->validator->estVide($data["nom"], "nom");
+            $data["nom"]=strip_tags($data["nom"]);
             $this->validator->estVide($data["prenom"], "prenom");
+            $data["prenom"]=strip_tags($data["prenom"]);
             if(!$this->validator->estVide($data["password"], "password")){
+                $data["password"]=strip_tags($data["password"]);
                 if(!$this->validator->estVide($data["Cpassword"], "Cpassword")){
-
+                    $data["Cpassword"]=strip_tags($data["Cpassword"]);
                     if($data["password"] != $data["Cpassword"]){
 
                         $this->validator->setErrors("Cpassword","vos mot de passe ne correspond pas");
@@ -56,6 +59,7 @@ class UserController extends AbstractController{
 
             }
             if(!$this->validator->estVide($data["email"], "email")){
+                $data["email"]=strip_tags($data["email"]);
                 if($this->validator->estMail($data["email"], "email")){
                     
                     if($this->model->loginExiste($data["email"])){

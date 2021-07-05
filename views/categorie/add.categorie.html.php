@@ -9,12 +9,15 @@ if (Session::keyExist("array_error")){
     Session::destroyKey("array_error");
 }
 ?>
+
+
+
 <div class="container mt-5">
     <button class="btn btn-success col-12"><h1 class="text-center "> AJouter une catégorie</h1> </button>
 <form method="post" action="<?php path('categorie/addCategorie')?>">
-    <?php if(isset($array_error)): ?>
+    <?php if(isset($array_error['libelle'])): ?>
         <div class="alert alert-danger my-2 " role="alert">
-            <strong>Vérifiez vos saisie</strong>
+            <strong><?=$array_error['libelle']?></strong>
         </div>
     <?php endif ?>
   <div class="form-group row mt-3" >
@@ -34,6 +37,15 @@ if (Session::keyExist("array_error")){
     <?php $form->input("Libelle","form-control","text") ?>
     </div>
   </div>
+    <div class="form-group row">
+        <?php $form->label("Status","col-sm-2 col-form-label") ?>
+        <div class="col-sm-10">
+    <select class="form-control custom-select" name="status">
+        <?php $form->option("active","active") ?>
+        <?php $form->option("inactive","inactive") ?>
+    </select>
+        </div>
+    </div>
   
   
   <div class="form-group row">
@@ -44,5 +56,4 @@ if (Session::keyExist("array_error")){
 </form>
 
 </div>
-
 
