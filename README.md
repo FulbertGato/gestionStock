@@ -14,3 +14,4 @@ ouvrez le dossier public dans le terminal : cd public<br>
 lancer la commande : php -S localhost:8000<br>
 
 NB: Vous pouvez changer le port dans config/constante.php
+compte admin : gator@admin.com  1234
