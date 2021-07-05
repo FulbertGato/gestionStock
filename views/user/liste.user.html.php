@@ -19,6 +19,7 @@ $title="liste des utilisateurs";
                                             <th>Nom</th>
                                             <th>Prenom</th>
                                             <th>Email</th>
+                                            <th>Role</th>
                                             
                                         </tr>
                                     </thead>
@@ -27,6 +28,7 @@ $title="liste des utilisateurs";
                                              <th>Nom</th>
                                             <th>Prenom</th>
                                             <th>Email</th>
+                                            <th>Role</th>
                                            
                                         </tr>
                                     </tfoot>
@@ -36,6 +38,7 @@ $title="liste des utilisateurs";
                                             <td><?= $user['nom'] ?></td>
                                             <td><?= $user['prenom'] ?></td>
                                             <td><?= $user['email'] ?></td>
+                                            <td><?= $user['role'] ?></td>
                                             
                                         </tr>
                                 <?php endforeach; ?>        

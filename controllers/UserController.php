@@ -32,7 +32,7 @@ class UserController extends AbstractController{
 
     public function register(Request $request){
 
-        if(!Authorisation::estConnect()){
+        if(!Authorisation::estAdmin()){
             Response::redirectUrl("securite/login");
         }
 
@@ -40,9 +40,7 @@ class UserController extends AbstractController{
           $form = new Formulaire();
 
         if($request->isPost()){
-
             $data = $request->getBody();
-            //dd($data);
             $this->validator->estVide($data["nom"], "nom");
             $data["nom"]=strip_tags($data["nom"]);
             $this->validator->estVide($data["prenom"], "prenom");

@@ -29,6 +29,7 @@ class CategorieModel extends AbstractModel
         return @$result["count"]==0?false:true;
     }
 
+
     public  function setStatus(array $data){
         extract($data);
         $sql="UPDATE $this->tableName SET status_categorie = ? WHERE $this->primaryKey = ?";

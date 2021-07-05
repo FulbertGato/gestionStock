@@ -16,10 +16,10 @@ class UserModel extends AbstractModel
     public function insert(array $user):bool{
         extract($user);
         $sql= "INSERT INTO $this->tableName 
-        (nom,prenom,email,password)
+        (nom,prenom,email,password,role)
         VALUES 
-        (?,?,?,?)";
-        $result =$this->persit($sql,[$nom,$prenom,$email,$password]);
+        (?,?,?,?,?)";
+        $result =$this->persit($sql,[$nom,$prenom,$email,$password,$role]);
         return $result["count"]==0?false:true;
     }
 

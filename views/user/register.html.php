@@ -25,6 +25,7 @@ if (Session::keyExist("array_error")){
                                                        <?php $form->label("Prénom") ?>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
                                                         <?php $form->input("nom","form-control","text") ?>
@@ -32,9 +33,25 @@ if (Session::keyExist("array_error")){
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                      <?php $form->input("email","form-control","email") ?>
-                                                       <?php $form->label("Email") ?>
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3 mb-md-0">
+                                                                      <?php $form->input("email","form-control","email") ?>
+                                                                       <?php $form->label("Email") ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3 mb-md-0">
+
+                                                            <select class="form-control custom-select" name="role">
+                                                                <?php $form->option("admin","admin") ?>
+                                                                <?php $form->option("vendeur","vendeur") ?>
+
+                                                            </select>
+                                                            <?php $form->label("Role") ?>
+                                                        </div>
+                                                    </div>
+
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">

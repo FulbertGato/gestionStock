@@ -23,7 +23,7 @@ class ProduitController extends  AbstractController{
 
     public function  showAllProduit(){
         if(!Authorisation::estConnect()){
-            Response::redirectUrl("user/login");
+            Response::redirectUrl("securite/login");
         }
         $data= $this->model->selectAll();
      //  $nbreProduitRuptureStock = $this->model->ruptureStock();
@@ -92,6 +92,9 @@ class ProduitController extends  AbstractController{
        // dd($ref);
         $this->render('produit/add.produit',['categories'=>$categories['data'],'form'=>$this->form,'ref'=>$ref]);
     }
+
+
+
 
     public function generateReference(){
         $lastId = $this->model->lastID();

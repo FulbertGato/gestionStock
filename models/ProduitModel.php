@@ -41,11 +41,18 @@ class ProduitModel extends AbstractModel
         return $result["data"];
     }
 
-   /*public  function ruptureStock(){
-        $sql= "SELECT * FROM $this->tableName WHERE stock = 0 ";
-        $result=$this->selectBy($sql);;
+   public function setStock(array $produit){
+    extract($produit);
+    $sql="UPDATE $this->tableName SET stock = ? WHERE id_produit = ?";
+    $result =$this->persit($sql,[$stock,$id_produit]);
+    return @$result["count"]==0?false:true;
+   }
+
+    public function refExiste(string $ref):array{
+        $sql= "SELECT * FROM $this->tableName WHERE ref_produit=:ref";
+        $result=$this->selectBy($sql,[':ref'=>$ref],true);
         return @$result;
-    }*/
+    }
 
 
 }
