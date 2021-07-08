@@ -60,12 +60,11 @@ class CommandeController extends \gestion\lib\AbstractController
             if($this->validator->formValide()){
                 
 
-               
-                //$p['quantite' => ];
+              
                 $p['quantite']=$data['quantite'];
-                //dd($p);
+                
                 $_SESSION['produitsV'][]=$p;
-                //Session::SetSession("produits",$_SESSION['produitsV']);
+               
                 Response::redirectUrl("commande/addCommande");
             }else{
                // die("tout faux");
@@ -104,7 +103,7 @@ class CommandeController extends \gestion\lib\AbstractController
             Response::redirectUrl("securite/login");
         }
         $produitsV = $_SESSION['produitsV'];
-        //dd($produitsV);
+        
         unset($_SESSION['produitsV']);
         $model_c= new CommandeModel();
         $model_p = new ProduitModel();
@@ -113,11 +112,11 @@ class CommandeController extends \gestion\lib\AbstractController
             $p['stock']=$p['stock']-$p['quantite'];
             $p['total']=$p['quantite']*$p['prix'];
             $p['ref_c']=$this->generateReference();
-            //dd($p);
+            
             $model_c->insert($p);
             $model_p->setStock($p);
         }
-        Response::redirectUrl("commande/addCommande");
+        Response::redirectUrl("commande/showAllCommande");
     }
 
 
